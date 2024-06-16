@@ -1,0 +1,40 @@
+﻿@page
+@model SE1728_Razor.Pages.OrderReport.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Order Report List</h1>
+<Form asp-page="Index" method="post">
+<input type="date" name="dateFrom">
+<input type="date" name="dateTo">
+<p>
+        <button type="submit" class="btn btn-primary">Search</button>
+</p>
+</Form>
+<table class="table table-bordered table-striped" style="margin-top: 20px;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Staff Name</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderReports)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NumericalOrder)</td>
+                <td>@Html.DisplayFor(modelItem => item.StaffName)</td>
+                <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.UnitPrice)</td>
+            </tr>
+        }
+    </tbody>
+</table>

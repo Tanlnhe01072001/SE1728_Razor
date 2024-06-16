@@ -1,0 +1,44 @@
+﻿@page
+@model SE1728_Razor.Pages.Categories.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Category List</h1>
+
+<form asp-page="Index" method="post">
+    <div class="form-group">
+        <label for="Name">Search by Name:</label>
+        <input type="text" id="Name" name="Name" class="form-control" value="@Model.Name" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<p>
+    <a asp-page="Create" class="btn btn-success">Create New</a>
+</p>
+
+<table class="table table-bordered table-striped" style="margin-top: 20px;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Category ID</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Category)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CategoryId)</td>
+                <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CategoryId" class="btn btn-primary">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.CategoryId" class="btn btn-info">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.CategoryId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

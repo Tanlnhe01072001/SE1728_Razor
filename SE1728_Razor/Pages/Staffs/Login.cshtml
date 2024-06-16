@@ -1,0 +1,84 @@
+﻿@page
+@model SE1728_Razor.Pages.Staffs.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Staff.Name" class="control-label"></label>
+                <input asp-for="Staff.Name" class="form-control" />
+                <span asp-validation-for="Staff.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Staff.Password" class="control-label"></label>
+                <input asp-for="Staff.Password" class="form-control" />
+                <span asp-validation-for="Staff.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group submit-btn">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+        <div class="text-warning">
+            @if (ViewData.ModelState["message"] != null && ViewData.ModelState["message"].Errors.Count > 0)
+            {
+                @ViewData.ModelState["message"].Errors.FirstOrDefault().ErrorMessage
+            }
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    /* Custom styles for login page */
+    body {
+        background-color: #f8f9fa; /* Background color */
+    }
+
+    h1 {
+        color: #007bff; /* Header text color */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Primary button background color */
+        border-color: #007bff; /* Primary button border color */
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Primary button hover background color */
+            border-color: #0056b3; /* Primary button hover border color */
+        }
+
+    .form-control {
+        border-color: #007bff; /* Form control border color */
+    }
+
+        .form-control:focus {
+            border-color: #0056b3; /* Form control focus border color */
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Form control focus box shadow */
+        }
+
+    .text-danger {
+        color: #dc3545; /* Error message text color */
+    }
+
+    .text-warning {
+        color: #ffc107; /* Warning message text color */
+    }
+</style>

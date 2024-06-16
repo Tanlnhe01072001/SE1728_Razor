@@ -1,0 +1,60 @@
+﻿@page
+@model SE1728_Razor.Pages.Staffs.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Staff List</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-success">Create New</a>
+</p>
+
+<form method="get">
+    <div class="form-group">
+        <label for="SearchString">Search by Name:</label>
+        <input type="text" id="SearchString" name="SearchString" class="form-control" value="@Model.SearchString" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<table class="table table-bordered table-striped" style="margin-top: 20px;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Password</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Staff)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                <td>
+                   <style>
+    .badge-primary, .badge-secondary {
+        color: black !important;
+         }
+          </style>
+
+        @if (item.Role == 1)
+        {
+            <span class="badge badge-primary">Admin</span>
+        }
+         else if (item.Role == 0)
+        {
+        <span class="badge badge-secondary">Staff</span>
+        }
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.StaffId" class="btn btn-primary">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.StaffId" class="btn btn-info">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.StaffId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

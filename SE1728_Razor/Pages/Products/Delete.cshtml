@@ -1,0 +1,13 @@
+﻿@page 
+@model SE1728_Razor.Pages.Products.DeleteModel
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<h3>Are you sure you want to delete this product?</h3>
+<p>Product Name: @Html.DisplayFor(model => model.Product.ProductName)</p>
+
+<form method="post">
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-page="./Index">Back to List</a>
+</form>
